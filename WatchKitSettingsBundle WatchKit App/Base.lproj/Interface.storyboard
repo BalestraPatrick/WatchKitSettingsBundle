@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="6750" systemVersion="14C109" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6735"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3737"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="WatchKitSettingsBundle_WatchKit_App" customModuleProvider="target">
+                    <items>
+                        <label alignment="center" verticalAlignment="center" text="This is a label example with a font size of 12." textAlignment="center" numberOfLines="0" id="3nd-oU-Qz6">
+                            <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                        </label>
+                    </items>
+                    <connections>
+                        <outlet property="label" destination="3nd-oU-Qz6" id="mOP-8Z-wNl"/>
+                    </connections>
+                </controller>
+            </objects>
+        </scene>
+    </scenes>
+</document>
