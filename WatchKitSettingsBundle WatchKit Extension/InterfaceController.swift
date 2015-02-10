@@ -24,7 +24,7 @@ class InterfaceController: WKInterfaceController {
     
     func loadFontSize() {
         let preferencesUserDefaults = NSUserDefaults(suiteName: "group.patrickbalestra.watchkitsettingsbundle.preferences")
-        let fontSize = CGFloat((preferencesUserDefaults?.valueForKey("fontSize") as NSString).floatValue)
+        let fontSize = CGFloat((preferencesUserDefaults?.valueForKey("fontSize") as! NSString).floatValue)
         let attributedString = NSAttributedString(string: "This is a label example with a font size of \(fontSize).", attributes: [NSFontAttributeName : UIFont.systemFontOfSize(fontSize)])
         label.setAttributedText(attributedString)
     }

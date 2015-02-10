@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     func loadFontSize() {
         let fontSizes = ["12", "14", "16", "18"]
         let preferencesUserDefaults = NSUserDefaults(suiteName: "group.patrickbalestra.watchkitsettingsbundle.preferences")
-        let fontSize = preferencesUserDefaults?.valueForKey("fontSize") as String
+        let fontSize = preferencesUserDefaults?.valueForKey("fontSize") as! String
         segmentedControl.selectedSegmentIndex = find(fontSizes, fontSize)!;
     }
     
