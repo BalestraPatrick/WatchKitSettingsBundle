@@ -21,11 +21,16 @@ class ViewController: UIViewController {
 
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     func loadFontSize() {
         let fontSizes = ["12", "14", "16", "18"]
         let preferencesUserDefaults = NSUserDefaults(suiteName: "group.patrickbalestra.watchkitsettingsbundle.preferences")
-        let fontSize = preferencesUserDefaults?.valueForKey("fontSize") as! String
-        segmentedControl.selectedSegmentIndex = find(fontSizes, fontSize)!;
+        if let fontSize = preferencesUserDefaults?.valueForKey("fontSize") as? NSString {
+            segmentedControl.selectedSegmentIndex = find(fontSizes, fontSize as! String)!;
+        }
     }
     
     @IBAction func preferenceChanged(sender: UISegmentedControl) {

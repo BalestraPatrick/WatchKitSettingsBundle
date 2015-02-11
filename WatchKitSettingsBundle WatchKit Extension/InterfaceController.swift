@@ -9,7 +9,6 @@
 import WatchKit
 import Foundation
 
-
 class InterfaceController: WKInterfaceController {
 
     @IBOutlet weak var label: WKInterfaceLabel!
@@ -22,17 +21,17 @@ class InterfaceController: WKInterfaceController {
         
     }
     
+    override func didDeactivate() {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     func loadFontSize() {
         let preferencesUserDefaults = NSUserDefaults(suiteName: "group.patrickbalestra.watchkitsettingsbundle.preferences")
-        let fontSize = CGFloat((preferencesUserDefaults?.valueForKey("fontSize") as! NSString).floatValue)
-        let attributedString = NSAttributedString(string: "This is a label example with a font size of \(fontSize).", attributes: [NSFontAttributeName : UIFont.systemFontOfSize(fontSize)])
-        label.setAttributedText(attributedString)
+        if let fontSizeString = preferencesUserDefaults?.valueForKey("fontSize") as? NSString {
+            let fontSize = CGFloat((preferencesUserDefaults?.valueForKey("fontSize") as! NSString).floatValue)
+            let attributedString = NSAttributedString(string: "This is a label example with a font size of \(fontSize).", attributes: [NSFontAttributeName : UIFont.systemFontOfSize(fontSize)])
+            label.setAttributedText(attributedString)
+        }
     }
-
-    override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
-        super.willActivate()
- 
-    }
-
+    
 }
