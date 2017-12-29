@@ -17,25 +17,26 @@ class ViewController: UIViewController {
         
         loadFontSize()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadFontSize", name: NSUserDefaultsDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.loadFontSize), name: UserDefaults.didChangeNotification, object: nil)
 
     }
     
-    override func viewDidDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+    override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
     
-    func loadFontSize() {
+    @objc func loadFontSize() {
         let fontSizes = ["12", "14", "16", "18"]
-        let preferencesUserDefaults = NSUserDefaults(suiteName: "group.patrickbalestra.watchkitsettingsbundle.preferences")
-        if let fontSize = preferencesUserDefaults?.valueForKey("fontSize") as? NSString {
-            segmentedControl.selectedSegmentIndex = find(fontSizes, fontSize as! String)!;
+        let preferencesUserDefaults = UserDefaults(suiteName: "group.patrickbalestra.watchkitsettingsbundle.preferences")
+        if let fontSize = preferencesUserDefaults?.value(forKey: "fontSize") as? String {
+            segmentedControl.selectedSegmentIndex = fontSizes.index(of: fontSize)!
+//                find(fontSizes, fontSize as! String)!
         }
     }
     
     @IBAction func preferenceChanged(sender: UISegmentedControl) {
-        let preferencesUserDefaults = NSUserDefaults(suiteName: "group.patrickbalestra.watchkitsettingsbundle.preferences")
-        preferencesUserDefaults?.setObject(sender.titleForSegmentAtIndex(sender.selectedSegmentIndex), forKey: "fontSize")
+        let preferencesUserDefaults = UserDefaults(suiteName: "group.patrickbalestra.watchkitsettingsbundle.preferences")
+        preferencesUserDefaults?.set(sender.titleForSegment(at: sender.selectedSegmentIndex), forKey: "fontSize")
     }
 
 }
